@@ -37,8 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.purple.withOpacity(.2),
       iconSize: 24,
       padding: padding,
-      icon: Icons.verified_user,
-      text: "Editor's Choice",
+      icon: Icons.trending_up,
+      text: "Top Trending",
     ));
 
     tabs.add(GButton(
@@ -49,9 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.teal.withOpacity(.2),
       iconSize: 24,
       padding: padding,
-      icon: Icons.category,
-      text: 'Category',
+      icon: Icons.money_outlined,
+      text: 'Subscribe',
     ));
+
+
+
   }
 
   @override
@@ -59,21 +62,22 @@ class _MyHomePageState extends State<MyHomePage> {
     _wallpaperBloc = BlocProvider.of<WallpaperBloc>(context);
     _wallpaperBloc.add(GetAllWallpaper());
     return  Scaffold(
+      backgroundColor: Color(0xFF000000),
       extendBody: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFF2d2d2d),
         elevation: 0.0,
         title: Text(
           widget.title,
-          style: TextStyle(fontFamily: 'Raleway'),
+          style: TextStyle(fontFamily: 'Raleway',color: Colors.white),
         ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.info_outline),
+            icon: Icon(Icons.search,color: Colors.white,),
             onPressed: () {
               Navigator.push(
-                  context, CupertinoPageRoute(builder: (context) => Setting()));
+                  context, CupertinoPageRoute(builder: (context) => Search()));
             },
           )
         ],
@@ -119,21 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                       controller.jumpToPage(index);
                     }),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: FloatingActionButton(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.search,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => Search()));
-                },
-                elevation: 3.0,
               ),
             ),
           ],
