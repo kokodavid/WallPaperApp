@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Screens/HomePage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:,
+      home:MyHomePage('Wallpapers 2021')
     );
   }
 }
