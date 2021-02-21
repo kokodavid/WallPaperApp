@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_inapp_purchase/modules.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:wallpapers_app/Bloc/wallpaperBloc.dart';
 import 'package:wallpapers_app/Bloc/wallpaperEvent.dart';
@@ -8,6 +9,7 @@ import 'package:wallpapers_app/Screens/EditorChoice.dart';
 import 'package:wallpapers_app/Screens/Search.dart';
 import 'package:wallpapers_app/Screens/CategoryList.dart' as categoryScreen;
 import 'package:wallpapers_app/Screens/Setting.dart';
+import 'package:wallpapers_app/payment_service.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -23,11 +25,15 @@ class _MyHomePageState extends State<MyHomePage> {
   PageController controller = PageController();
   List<GButton> tabs = new List();
 
+
+
   @override
   void initState() {
     super.initState();
     var padding = EdgeInsets.symmetric(horizontal: 18, vertical: 5);
     double gap = 10;
+    PaymentService.instance.initConnection();
+
 
     tabs.add(GButton(
       gap: gap,
@@ -76,8 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Icon(Icons.search,color: Colors.white,),
             onPressed: () {
-              Navigator.push(
-                  context, CupertinoPageRoute(builder: (context) => Search()));
+              //App Billing//
+              PaymentService.instance.buyProduct("in_wallpaper_subscription");
             },
           )
         ],
